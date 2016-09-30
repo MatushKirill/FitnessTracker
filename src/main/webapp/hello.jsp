@@ -6,6 +6,8 @@
 <body>
 <h2>Hello World, Spring MVC</h2>
 
-<p>Welcome, ${greeting}</p>
+<form action="/redirect">
+    <input type="submit" value="redicate">
+</form>
 </body>
 </html>
