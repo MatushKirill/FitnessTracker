@@ -5,9 +5,9 @@
 </head>
 <body>
 <h2>Hello World, Spring MVC</h2>
-
 <form action="/redirect">
-    <input type="submit" value="redicate">
+    <input type="submit" value="redirect">
 </form>
+
 </body>
 </html>

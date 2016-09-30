@@ -23,9 +23,9 @@ public class HelloController {
 
         return "hello";
     }
-    @RequestMapping(value = "/redirect",method = RequestMethod.GET)
+    @RequestMapping(value = "/redirect")
     public String redirect(){
-        return "redirect:addMinutes";
+        return "redirect:addGoal";
     }
 
    

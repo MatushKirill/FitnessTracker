@@ -1,4 +1,4 @@
-<%--
+<%@ page import="model.Goal" %><%--
   Created by IntelliJ IDEA.
   User: kirill
   Date: 30/09/16
@@ -14,6 +14,8 @@
 </head>
 <body>
 <h1>Second page</h1>
+Language:   <a href="?language=en"> English</a> | <a href="?language=es">Spanish</a>
+
 <form:form commandName="exercise">
     <table>
         <tr>
@@ -29,5 +31,7 @@
     </table>
 
 </form:form>
+
+<h1>Goal of the day is: <%=request.getSession().getAttribute("goal")%></h1>
 </body>
 </html>
