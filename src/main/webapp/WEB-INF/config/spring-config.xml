@@ -11,13 +11,18 @@
                            http://www.springframework.org/schema/mvc
                            http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+    <mvc:resources mapping="/**" location="/" />
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <!--<property name="prefix" value="WEB_INF/jsp/"/>-->
+        <property name="prefix" value="/jsp/"/>
         <property  name="suffix" value=".jsp"/>
     </bean>
     <mvc:annotation-driven/>
+
     <context:component-scan base-package="Controller"/>
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource "
+          p:basename="messages"/>
 
     <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/jsp/"-->
     <!--p:suffix=".jsp"/>-->
