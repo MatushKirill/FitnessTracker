@@ -1,14 +1,8 @@
-package Controller;
+package kirill.Controller;
 
-import com.sun.net.httpserver.HttpServer;
-import jdk.nashorn.internal.ir.RuntimeNode;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by kirill on 30/09/16.
@@ -22,7 +16,7 @@ public class HelloController {
 
         return "hello";
     }
-    @RequestMapping(value = "/redirect",method = RequestMethod.POST)
+    @RequestMapping(value = "/redirect")
     public String redirect(){
         return "redirect:addGoal";
     }

@@ -1,4 +1,4 @@
-<%@ page import="model.Goal" %><%--
+<%@ page import="kirill.model.Goal" %><%--
   Created by IntelliJ IDEA.
   User: kirill
   Date: 30/09/16
@@ -11,6 +11,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
+
     <title>Title</title>
     <script type="text/javascript" src="/jquery/jquery-3.1.1.js"></script>
     <script type="text/javascript">
@@ -29,8 +30,19 @@
                 });
 
         });
-
     </script>
+    <style>
+        .error{
+            color:#ff0000;
+        }
+        .errorBlock{
+            color: #000;
+            background-color:#ffEEEE;
+            border: 3px solid #ff0000;
+            padding: 8px;
+            margin: 16px;
+        }
+    </style>
 
 </head>
 <body>
@@ -38,14 +50,16 @@
 Language:   <a href="?language=en"> English</a> | <a href="?language=es">Spanish</a>
 
 <form:form commandName="exercise">
+    <form:errors path="*" cssClass="errorBlock" element="div"/>
     <table>
         <tr>
             <td><spring:message code="Exercise.text"/> </td>
             <td><form:input path="minutes"/></td>
             <td><form:select id="activities" path="activity" /></td>
+            <td><form:errors path="activity" cssClass="error"/> </td>
         </tr>
         <tr>
-            <td colspan="3">
+            <td colspan="4">
                 <input type="submit" value= "enter exercise">
             </td>
 

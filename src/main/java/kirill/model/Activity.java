@@ -1,4 +1,4 @@
-package model;
+package kirill.model;
 
 /**
  * Created by kirill on 02/10/16.

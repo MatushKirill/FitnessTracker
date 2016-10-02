@@ -1,14 +1,17 @@
-package Controller;
+package kirill.Controller;
 
-import model.Activity;
-import model.Exercise;
+import kirill.model.Activity;
+import kirill.model.Exercise;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import kirill.service.ExerciseService;
 
-import java.util.ArrayList;
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -17,6 +20,8 @@ import java.util.List;
 @Controller
 public class NewPageController {
 
+    @Autowired
+    private ExerciseService exerciseService;
 
     @RequestMapping(value = "/addMinutes")
     public String addMinutes(@ModelAttribute("exercise") Exercise exercise){
@@ -29,27 +34,21 @@ public class NewPageController {
 
     @RequestMapping(value = "/activities",method = RequestMethod.GET)
     public @ResponseBody List<Activity> findAllActivities(){
-        List<Activity> activities=new ArrayList<Activity>();
-        Activity run =new Activity();
-        run.setDesc("Run");
-        activities.add(run);
-        Activity bike =new Activity();
-        bike.setDesc("Bike");
-        activities.add(bike);
-        Activity swim =new Activity();
-        swim.setDesc("Swim");
-        activities.add(swim);
 
-        return activities;
+
+        return exerciseService.findAllActivitues();
 
     }
 
 
     @RequestMapping(value = "/addMinutes" ,method = RequestMethod.POST)
-    public String addMoreMinutes(@ModelAttribute("exercise") Exercise exercise){
+    public String addMoreMinutes(@Valid @ModelAttribute("exercise") Exercise exercise, BindingResult result){
         System.out.println("exercising " + exercise.getMinutes() );
         System.out.println("exercise activity "+ exercise.getActivity());
-
-        return "redirect:addGoal";
+        if (result.hasErrors()){
+            return "addMinutes";
+        }else {
+            return "addMinutes";
+        }
     }
 }

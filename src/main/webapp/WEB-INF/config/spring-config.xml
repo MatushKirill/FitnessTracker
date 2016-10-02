@@ -21,7 +21,7 @@
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" p:defaultLocale="en"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/jsp/"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
         <property  name="suffix" value=".jsp"/>
         <property name="order"  value="2"/>
     </bean>
@@ -59,7 +59,7 @@
     </bean>
     <mvc:annotation-driven/>
 
-    <context:component-scan base-package="Controller"/>
+    <context:component-scan base-package="kirill"/>
 
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource "
           p:basename="messages"/>
