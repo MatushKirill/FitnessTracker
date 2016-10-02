@@ -5,8 +5,10 @@
 </head>
 <body>
 <h2>Hello World, Spring MVC</h2>
+<%=request.getAttribute("name")%>
+<br>
 <form action="/redirect">
-    <input type="submit" value="redirect">
+<input type="submit" value="redirect">
 </form>
 
 </body>
