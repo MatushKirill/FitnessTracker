@@ -48,7 +48,7 @@ public class NewPageController {
         if (result.hasErrors()){
             return "addMinutes";
         }else {
-            return "addMinutes";
+            return "hello";
         }
     }
 }

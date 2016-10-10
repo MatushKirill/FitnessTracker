@@ -4,21 +4,48 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:security="http://www.springframework.org/schema/security"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/context
                            http://www.springframework.org/schema/context/spring-context.xsd
                            http://www.springframework.org/schema/mvc
-                           http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+                           http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                           http://www.springframework.org/schema/security
+                           http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+        <!--<property name="driverClassName" value="com.mysql.jdbc.Drive"/>-->
+        <!--<property name="url" value="jdbc:mysql://localhost:3306/fitnessTracker"/>-->
+        <!--<property name="username" value="root"/>-->
+        <!--<property name="password" value="root"/>-->
+
+    <!--</bean>-->
+    <security:global-method-security pre-post-annotations="enabled">
+        <security:expression-handler ref="fitnessExpressionHandler"/>
+    </security:global-method-security>
+    <bean id="fitnessExpressionHandler" class="org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler">
+        <property name="permissionEvaluator">
+            <bean id="permissionEvaluator" class="kirill.security.FitnessPromissionEvaluator">
+                <property name="dataSource" ref="dataSource"/>
+            </bean>
+        </property>
+    </bean>
 
     <mvc:resources mapping="/**" location="/" />
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource "
+          p:basename="messages"/>
+
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" p:defaultLocale="en"/>
 
 
     <mvc:interceptors>
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" p:paramName="language"/>
     </mvc:interceptors>
 
-    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" p:defaultLocale="en"/>
+
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
@@ -61,8 +88,9 @@
 
     <context:component-scan base-package="kirill"/>
 
-    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource "
-          p:basename="messages"/>
+
+
+
 
     <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/jsp/"-->
     <!--p:suffix=".jsp"/>-->

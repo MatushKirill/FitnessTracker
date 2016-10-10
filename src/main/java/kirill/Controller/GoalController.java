@@ -1,8 +1,10 @@
 package kirill.Controller;
 
 import kirill.model.Goal;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,10 +24,10 @@ public class GoalController {
     public String addGoal(Model model){
         Goal goal=new Goal();
         goal.setMinutes(10);
-            model.addAttribute("goal",goal);
+        model.addAttribute("goal",goal);
         return "addGoal";
     }
-
+    @PreAuthorize("hasRole('ROLE_ADMIN') and hasPermission(#goal,'createGoal')")
     @RequestMapping(value = "/addGoal", method = RequestMethod.POST)
     public String updateGoal(@Valid @ModelAttribute("goal") Goal goal, BindingResult result){
         System.out.println("result has errors: "+result.hasErrors());
@@ -34,7 +36,12 @@ public class GoalController {
         if (result.hasErrors()){
             return "addGoal";
         }
-        return "redirect:addMinutes";
+        return "redirect:hello";
+    }
+    @RequestMapping(value = "/403",method = RequestMethod.POST)
+    public String Error403(ModelMap model){
+        System.out.println("403");
+        return "403post";
     }
 
 }

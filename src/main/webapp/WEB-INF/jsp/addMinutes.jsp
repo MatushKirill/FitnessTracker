@@ -50,6 +50,7 @@
 Language:   <a href="?language=en"> English</a> | <a href="?language=es">Spanish</a>
 
 <form:form commandName="exercise">
+
     <form:errors path="*" cssClass="errorBlock" element="div"/>
     <table>
         <tr>
@@ -67,7 +68,5 @@ Language:   <a href="?language=en"> English</a> | <a href="?language=es">Spanish
     </table>
 
 </form:form>
-<%--<%Goal goal=(Goal)session.getAttribute("goal");%>--%>
-<%--<h1>Goal of the day is:<%=goal.getMinutes()%> </h1>--%>
 </body>
 </html>
