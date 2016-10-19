@@ -5,14 +5,15 @@
 	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security.xsd">
+    <!--<ldap-server ldif="classpath:users.ldif"/>-->
+
 
     <http auto-config="true" use-expressions="true">
         <intercept-url pattern="/login" access="permitAll" />
-        <intercept-url pattern="/loginFailed" access="permitAll" />
-        <intercept-url pattern="/logout" access="permitAll" />
+        <intercept-url pattern="/loginFailed" access="permitAll"/>
+        <intercept-url pattern="/logout" access="permitAll"/>
         <intercept-url pattern="/registration" access="permitAll"/>
-        <intercept-url pattern="/403" access="permitAll" />
-        <intercept-url pattern="/405" access="permitAll" />
+        <intercept-url pattern="/403" access="permitAll"/>
         <intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
         <form-login login-page="/login" authentication-failure-url="/loginFailed"/>
         <logout logout-success-url="/logout" />
@@ -20,7 +21,16 @@
         <access-denied-handler error-page="/405"/>
     </http>
 
-    <authentication-manager>
+    <!--<authentication-manager>-->
+        <!--<ldap-authentication-provider-->
+            <!--group-search-filter="member={0}"-->
+            <!--group-search-base="ou=groups"-->
+            <!--user-search-base="ou=people"-->
+            <!--user-search-filter="uid={0}"-->
+        <!--/>-->
+    <!--</authentication-manager>-->
+
+    <authentication-manager alias="authenticationManager">
         <authentication-provider>
             <password-encoder hash="bcrypt"/>
             <jdbc-user-service data-source-ref="dataSource"/>
@@ -34,15 +44,7 @@
         <beans:property name="password" value="root"/>
 
     </beans:bean>
-    <!--<beans:bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">-->
-        <!--<beans:property name="dataSource" ref="dataSource"/>-->
-        <!--<beans:property name="packagesToScan" value="kirill.dto"/>-->
-        <!--<beans:property name="hibernateProperties">-->
-         <!--<beans:props>-->
-              <!--<beans:prop key="dialect">org.hibernate.dialect.MySQLDialect</beans:prop>-->
-         <!--</beans:props>-->
-        <!--</beans:property>-->
-    <!--</beans:bean>-->
+
 
     <!--<beans:bean id="userDetailsSorvice" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">-->
         <!--<beans:property name="dataSource" ref="dataSource"/>-->

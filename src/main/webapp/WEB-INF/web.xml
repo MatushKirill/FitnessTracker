@@ -46,7 +46,7 @@
         <url-pattern>*.html</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
-          <welcome-file>/WEB-INF/jsp/hello.jsp</welcome-file>
+          <welcome-file>/WEB-INF/jsp/authenticated/hello.jsp</welcome-file>
     </welcome-file-list>
 
 

@@ -1,7 +1,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%--
   Created by IntelliJ IDEA.
-  User: kirill
+  UserDetails: kirill
   Date: 10/10/16
   Time: 14:13
   To change this template use File | Settings | File Templates.

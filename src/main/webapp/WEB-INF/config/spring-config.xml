@@ -15,13 +15,18 @@
                            http://www.springframework.org/schema/security/spring-security.xsd">
 
 
-    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
-        <!--<property name="driverClassName" value="com.mysql.jdbc.Drive"/>-->
-        <!--<property name="url" value="jdbc:mysql://localhost:3306/fitnessTracker"/>-->
-        <!--<property name="username" value="root"/>-->
-        <!--<property name="password" value="root"/>-->
 
+    <!--<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">-->
+        <!--<property name="dataSource" ref="dataSource"/>-->
+        <!--<property name="packagesToScan" value="kirill.dto"/>-->
+        <!--<property name="hibernateProperties">-->
+            <!--<props>-->
+                <!--<prop key="dialect">org.hibernate.dialect.MySQLDialect</prop>-->
+            <!--</props>-->
+        <!--</property>-->
     <!--</bean>-->
+
+
     <security:global-method-security pre-post-annotations="enabled">
         <security:expression-handler ref="fitnessExpressionHandler"/>
     </security:global-method-security>
@@ -48,7 +53,7 @@
 
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="prefix" value="/WEB-INF/jsp/authenticated/"/>
         <property  name="suffix" value=".jsp"/>
         <property name="order"  value="2"/>
     </bean>
